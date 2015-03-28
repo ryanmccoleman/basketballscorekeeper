@@ -1,0 +1,12 @@
+(Stick to the basics... can add more features later)
+
+Plan: 
+1) Has a score clock that you can start and stop, and with display for each of the 4 quarters -> It will reset to 12 minutes each time
+
+2) Will have a score board for the home and visiting team, with three buttons to augment the score -> 1 point, 2 point and 3 points (added)
+
+3) A list of 5 slots in which players can be added to be on the court -> When they are on the court, their time played will add up, and they will have an option beside there name for adding 1 point, 2 points, or 3 points. -> When you add points to an individual player the points should add for the team as well.
+-> When players are added to the list of players, there should be the option to either add a player that exists, but who isn't currently on or to add a new player.
+
+4) There will be a list for each points of the stats.... it will display points as well as how much time they have played, and will update as the game goes on.
+
