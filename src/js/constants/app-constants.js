@@ -1,3 +1,5 @@
 module.exports = {
 	 ADD_TEAM_SCORE: 'ADD_TEAM_SCORE',
+	 STOP_CLOCK: "STOP_CLOCK",
+	 START_CLOCK: "START_CLOCK"
 }

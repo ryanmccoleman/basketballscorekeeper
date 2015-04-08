@@ -7,10 +7,38 @@ var CHANGE_EVENT = "change";
 
 var _game_id = 1;
 var _quarter = 1;
-var _secondsremaining = 720;
+var _timeinmilsecs = 720000;
+var _timerisrunning = false;
+
+var _timer;
 
 function _addTeamPoints(team_id, points) {
 	_teamList[team_id].team_points += points;
+}
+
+function _startClock() {
+	if(_timerisrunning) {
+		_timer = setTimeout(function() {
+			if(_timeinmilsecs > 0) {
+				_decreaseTime(10);
+				_stopClock();
+				_startClock();
+			} else {
+				_stopClock();
+			}
+		}, 10);		
+	}
+
+}
+
+function _decreaseTime(amt) {
+	_timeinmilsecs -= amt;
+	GameStore.emitChange();
+}
+
+function _stopClock() {
+	_timer = clearTimeout();
+	_timer = null;
 }
 
 var _teamList = {};
@@ -41,7 +69,15 @@ var GameStore = assign({}, EventEmitter.prototype, {
 	},
 	getTeam: function(team_id) {
 		return _teamList[team_id];
+	},
+	getGameData: function() {
+		return {
+			teams: _teamList,
+			quarter: _quarter,
+			timeinmilsecs: _timeinmilsecs
+		};
 	}
+	
 });
 
 GameStore.dispatchToken = AppDispatcher.register(function(payload) {
@@ -49,6 +85,14 @@ GameStore.dispatchToken = AppDispatcher.register(function(payload) {
 	switch(action.actionType) {
 		case AppConstants.ADD_TEAM_SCORE:
 			_addTeamPoints(action.teamid, action.addnumb);
+			break;
+		case AppConstants.START_CLOCK:
+			_timerisrunning = true;
+			_startClock();
+			break;
+		case AppConstants.STOP_CLOCK:
+			_timerisrunning = false;
+			_stopClock();
 			break;
 	}
 	GameStore.emitChange();
