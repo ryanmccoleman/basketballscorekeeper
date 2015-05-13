@@ -1,11 +1,13 @@
 var React = require("react");
 var GameStore = require('../stores/game-store');
 var AppActions = require('../actions/app-actions');
+var UtilityMixin = require('../mixins/utilitymixin');
 
 function _getTeam(team_id) {
 	return GameStore.getTeam(team_id);
 }
 var GameTimer = React.createClass({
+	mixins:[UtilityMixin()],
     getInitialState:function(){
       return {
       	running: false,
@@ -23,7 +25,7 @@ var GameTimer = React.createClass({
     	}
     },
 	render: function() {
-		var timedisplay = this.getFormattedTime();
+		var timedisplay = this.getFormattedTime(this.props.gametimems);
 		return (
 			<div>
 			<span>{timedisplay}</span>
@@ -31,14 +33,6 @@ var GameTimer = React.createClass({
 			</div>
 		)
 	},
-	getFormattedTime: function() {
-		var seconds = Math.round(this.props.gametimems % 60000);
-		var minutes = Math.floor(this.props.gametimems / 60000);
-		if(seconds < 10) {
-			seconds = "0"+seconds;
-		}
-		return minutes+" : "+seconds;
-	}
 });
 
 module.exports = GameTimer;

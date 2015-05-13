@@ -9,6 +9,12 @@ var AppActions = {
 	      addnumb: addnumb
 	    });
 	},
+  	addPost:function(postmsg){
+	    AppDispatcher.handleViewAction({
+	      actionType: AppConstants.ADD_POST,
+	      postmsg: postmsg,
+	    });
+	},
   	startClock:function(){
 	    AppDispatcher.handleViewAction({
 	      actionType: AppConstants.START_CLOCK
@@ -19,7 +25,6 @@ var AppActions = {
 	      actionType: AppConstants.STOP_CLOCK
 	    });
 	}
-
 }
 
 module.exports = AppActions;

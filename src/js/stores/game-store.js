@@ -55,6 +55,26 @@ _teamList[2] = {
 	name: "Visitor Team",
 	team_points: 0
 };
+
+var _postList = [];
+
+_postList[0] = {
+	homescore: 0,
+	visitorscore: 0,
+	timems: 0,
+	quarter: 1,
+	msg: "This is a test message"
+};
+
+function _addPost(postmsg) {
+	_postList.push({
+		homescore: _teamList[1].team_points,
+		visitorscore: _teamList[2].team_points,
+		timems: _timeinmilsecs,
+		quarter: _quarter,
+		msg: postmsg
+	});
+}
 	
 
 var GameStore = assign({}, EventEmitter.prototype, {
@@ -74,7 +94,8 @@ var GameStore = assign({}, EventEmitter.prototype, {
 		return {
 			teams: _teamList,
 			quarter: _quarter,
-			timeinmilsecs: _timeinmilsecs
+			timeinmilsecs: _timeinmilsecs,
+			postlist: _postList
 		};
 	}
 	
@@ -86,6 +107,9 @@ GameStore.dispatchToken = AppDispatcher.register(function(payload) {
 		case AppConstants.ADD_TEAM_SCORE:
 			_addTeamPoints(action.teamid, action.addnumb);
 			break;
+		case AppConstants.ADD_PLAYER_POINTS:
+			_addTeamPoints(action.player.teamid, action.points);
+			break;	
 		case AppConstants.START_CLOCK:
 			_timerisrunning = true;
 			_startClock();
@@ -93,6 +117,9 @@ GameStore.dispatchToken = AppDispatcher.register(function(payload) {
 		case AppConstants.STOP_CLOCK:
 			_timerisrunning = false;
 			_stopClock();
+			break;
+		case AppConstants.ADD_POST:
+			_addPost(action.postmsg);
 			break;
 	}
 	GameStore.emitChange();
