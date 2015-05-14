@@ -12,6 +12,10 @@ var _timerisrunning = false;
 
 var _timer;
 
+function _changeQuarter(qtr) {
+	_quarter = qtr;
+}
+
 function _addTeamPoints(team_id, points) {
 	_teamList[team_id].team_points += points;
 }
@@ -120,6 +124,9 @@ GameStore.dispatchToken = AppDispatcher.register(function(payload) {
 			break;
 		case AppConstants.ADD_POST:
 			_addPost(action.postmsg);
+			break;
+		case AppConstants.CHANGE_QUARTER:
+			_changeQuarter(action.quarter);
 			break;
 	}
 	GameStore.emitChange();

@@ -24,7 +24,14 @@ var AppActions = {
 	    AppDispatcher.handleViewAction({
 	      actionType: AppConstants.STOP_CLOCK
 	    });
-	}
+	},
+  	changeQuarter:function(qtr){
+	    AppDispatcher.handleViewAction({
+	      actionType: AppConstants.CHANGE_QUARTER,
+	      quarter: qtr
+	    });
+	},
+
 }
 
 module.exports = AppActions;

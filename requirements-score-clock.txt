@@ -1,5 +1,0 @@
-So what I need to do is just create a new component that is basically a textbox that has a submit button and then underneath the textbox is a list of all the messages that gets submitted. So upon submit we have an event which will cause the text message to get passed in and added to a "post" object which will grab the time, quarter, score and message and save it... Then on the component side we will have a litstener and when it gets updated, The Time, quarter, score and message will get appended into the list of posts that is underneath the text box. 
-The other thing I will still need to do, which I think I should do first is to create some sort of component, or sub component that keeps track of what quarter it is and updates the store accordingly.
-
-
-**** Goal for Tuesday night will be to get all the functional stuff done, and then on Wednesday night I can get all of the styling settled... the idea will be for it to be styled specifically for mobile -> Just using some standard bootstrap stuff.

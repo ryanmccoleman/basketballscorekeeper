@@ -2,6 +2,7 @@ var React = require("react");
 var TeamScorer = require('../components/app-teamscorer');
 var GameTimer = require('../components/app-gametimer');
 var GameLog = require('../components/app-gamelog');
+var QuarterControl = require('../components/app-quartercontr');
 var GameStore = require('../stores/game-store');
 var StoreWatchMixin = require('../mixins/storewatchmixin');
 
@@ -21,6 +22,7 @@ var APP = React.createClass({
 				<h1>Basketball Score App</h1>
 				{teams}
 				<GameTimer gametimems={this.state.timeinmilsecs}/>
+				<QuarterControl quarter={this.state.quarter} />
 				<GameLog postlist={this.state.postlist}/>
 			</div>);
 	}
