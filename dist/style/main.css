@@ -1,0 +1,42 @@
+/* general style for the basketball prototype */
+
+.main-section .panel-heading {
+  text-align: center;
+  font-size: 25px;
+}
+
+.main-numbers {
+	font-size: 55px;
+}
+
+.main-section .panel.panel-default {
+  text-align: center;
+}
+
+.main-section form{
+	  width: 200px;
+      margin: 0 auto;
+}
+
+.main-section input[type="radio"] {
+  margin-left: 10px;
+  margin-right: 7px;
+}
+
+.main-section textarea {
+  width: 400px;
+  height: 100px;
+}
+
+
+@media screen and (max-width: 500px) {
+		.main-section textarea {
+  		width: 250px;
+  	}
+}
+
+@media screen and (max-width: 350px) {
+	.main-numbers {
+		font-size: 35px;
+	}
+}

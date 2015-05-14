@@ -7,9 +7,9 @@ var AddPoints = React.createClass({
 		AppActions.addTeamScore(this.props.teamid, this.props.addnumb);
 	},
 	render: function() {
-		var text = this.props.addnumb+" Points";
+		var text = "+ "+this.props.addnumb;
 		return (
-			<button className="btn" onClick={this.handleClick}>{text}</button>
+			<button className="btn btn-default" onClick={this.handleClick}>{text}</button>
 		)
 	}
 });

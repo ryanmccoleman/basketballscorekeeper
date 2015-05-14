@@ -47,9 +47,9 @@ var AddPoints = React.createClass({displayName: "AddPoints",
 		AppActions.addTeamScore(this.props.teamid, this.props.addnumb);
 	},
 	render: function() {
-		var text = this.props.addnumb+" Points";
+		var text = "+ "+this.props.addnumb;
 		return (
-			React.createElement("button", {className: "btn", onClick: this.handleClick}, text)
+			React.createElement("button", {className: "btn btn-default", onClick: this.handleClick}, text)
 		)
 	}
 });
@@ -75,8 +75,14 @@ var GameLog = React.createClass({displayName: "GameLog",
     	}
 		return (
 			React.createElement("div", null, 
-				React.createElement("span", null, "Game Log"), 
-				React.createElement("textarea", {value: this.state.value, onChange: this._onChange}), React.createElement("button", {className: "btn", onClick: this.save}, "Submit"), 
+				React.createElement("div", {className: "panel panel-default"}, 
+					React.createElement("div", {className: "panel-heading"}, "Game Analysis"), 
+					React.createElement("div", {className: "panel-body"}, 
+						React.createElement("textarea", {value: this.state.value, onChange: this._onChange}), React.createElement("br", null), React.createElement("br", null), React.createElement("button", {className: "btn btn-primary", onClick: this.save}, "Submit")
+					)
+				), 
+				
+				React.createElement("h2", null, "Live Game Blog"), 
 				posts
 			)
 		)
@@ -127,9 +133,14 @@ var GameTimer = React.createClass({displayName: "GameTimer",
 	render: function() {
 		var timedisplay = this.getFormattedTime(this.props.gametimems);
 		return (
-			React.createElement("div", null, 
-			React.createElement("span", null, timedisplay), 
-			React.createElement("button", {onClick: this.toggleClockRunner}, "Start/Stop")
+			React.createElement("div", {className: "col-md-4 col-md-offset-4"}, 
+				React.createElement("div", {className: "panel panel-default"}, 
+					React.createElement("div", {className: "panel-heading"}, "Game Time"), 
+					React.createElement("div", {className: "panel-body"}, 
+						React.createElement("span", {className: "main-numbers"}, timedisplay), React.createElement("br", null), React.createElement("br", null), 
+						React.createElement("button", {className: "btn btn-primary", onClick: this.toggleClockRunner}, "Start/Stop")
+					)
+				)
 			)
 		)
 	},
@@ -159,13 +170,17 @@ var QuarterControl = React.createClass({displayName: "QuarterControl",
     },
 	render: function() {
 		return (
-			React.createElement("div", null, 
-				React.createElement("h3", null, "Quarter"), 
-				React.createElement("form", null, 
-					React.createElement("input", {type: "radio", onChange: this._onChange, name: "quarter", value: "1", defaultChecked: this.state.defIsChecked[1]}), "1", 
-					React.createElement("input", {type: "radio", onChange: this._onChange, name: "quarter", value: "2", defaultChecked: this.state.defIsChecked[2]}), "2", 
-					React.createElement("input", {type: "radio", onChange: this._onChange, name: "quarter", value: "3", defaultChecked: this.state.defIsChecked[3]}), "3", 
-					React.createElement("input", {type: "radio", onChange: this._onChange, name: "quarter", value: "4", defaultChecked: this.state.defIsChecked[4]}), "4"
+			React.createElement("div", {className: "col-md-4 col-md-offset-4"}, 
+				React.createElement("div", {className: "panel panel-default"}, 
+					React.createElement("div", {className: "panel-heading"}, "Quarter:"), 
+					React.createElement("div", {className: "panel-body"}, 
+						React.createElement("form", null, 
+							React.createElement("input", {type: "radio", onChange: this._onChange, name: "quarter", value: "1", defaultChecked: this.state.defIsChecked[1]}), "1", 
+							React.createElement("input", {type: "radio", onChange: this._onChange, name: "quarter", value: "2", defaultChecked: this.state.defIsChecked[2]}), "2", 
+							React.createElement("input", {type: "radio", onChange: this._onChange, name: "quarter", value: "3", defaultChecked: this.state.defIsChecked[3]}), "3", 
+							React.createElement("input", {type: "radio", onChange: this._onChange, name: "quarter", value: "4", defaultChecked: this.state.defIsChecked[4]}), "4"
+						)
+					)
 				)
 			));
 	},
@@ -186,9 +201,9 @@ var SinglePost = React.createClass({displayName: "SinglePost",
 	render: function() {
 		var gametime = this.getFormattedTime(this.props.timems);
 		return (
-			React.createElement("div", null, 
-				React.createElement("h1", null, "Time: ", gametime, "; Quarter: ", this.props.quarter, "; Home: ", this.props.home, "; Visitor: ", this.props.visitor), 
-				React.createElement("span", null, this.props.msg)
+			React.createElement("div", {className: "well well-lg"}, 
+				React.createElement("h4", null, "Time: ", gametime, "; Quarter: ", this.props.quarter, "; Home: ", this.props.home, "; Visitor: ", this.props.visitor), 
+				React.createElement("p", null, this.props.msg)
 			)
 		)
 	}
@@ -204,10 +219,14 @@ var AddPoints = require('../components/app-addpoints');
 var TeamScorer = React.createClass({displayName: "TeamScorer",
 	render: function() {
 		return (
-			React.createElement("div", {className: "teamBoard"}, 
-				React.createElement("span", null, "Team Name:"), React.createElement("span", null, this.props.team.name), 
-				React.createElement("span", null, "Team Points:"), React.createElement("span", null, this.props.team.team_points), 
-				React.createElement(AddPoints, {teamid: this.props.team.team_id, addnumb: 1}), React.createElement(AddPoints, {teamid: this.props.team.team_id, addnumb: 2}), React.createElement(AddPoints, {teamid: this.props.team.team_id, addnumb: 3})
+			React.createElement("div", {className: "teamBoard col-md-3 col-md-offset-2"}, 
+				React.createElement("div", {className: "panel panel-default"}, 
+					React.createElement("div", {className: "panel-heading"}, this.props.team.name, ":"), 
+					React.createElement("div", {className: "panel-body"}, 
+						React.createElement("span", {className: "main-numbers"}, this.props.team.team_points), React.createElement("br", null), React.createElement("br", null), 
+						React.createElement("div", {className: "btn-group"}, React.createElement(AddPoints, {teamid: this.props.team.team_id, addnumb: 1}), React.createElement(AddPoints, {teamid: this.props.team.team_id, addnumb: 2}), React.createElement(AddPoints, {teamid: this.props.team.team_id, addnumb: 3}))
+					)
+				)
 			)
 		)
 	}
@@ -236,11 +255,16 @@ var APP = React.createClass({displayName: "APP",
       		teams.push(React.createElement(TeamScorer, {team: this.state.teams[key]}));
     	}
 		return (
-			React.createElement("div", null, 
-				React.createElement("h1", null, "Basketball Score App"), 
-				teams, 
-				React.createElement(GameTimer, {gametimems: this.state.timeinmilsecs}), 
-				React.createElement(QuarterControl, {quarter: this.state.quarter}), 
+			React.createElement("div", {className: "container-fluid"}, 
+				React.createElement("div", {className: "row"}, 
+					React.createElement(GameTimer, {gametimems: this.state.timeinmilsecs})
+				), 
+				React.createElement("div", {className: "row"}, 
+					teams
+				), 
+				React.createElement("div", {className: "row"}, 
+					React.createElement(QuarterControl, {quarter: this.state.quarter})
+				), 
 				React.createElement(GameLog, {postlist: this.state.postlist})
 			));
 	}
@@ -392,7 +416,7 @@ _postList[0] = {
 	visitorscore: 0,
 	timems: 0,
 	quarter: 1,
-	msg: "This is a test message"
+	msg: "The game has not yet started"
 };
 
 function _addPost(postmsg) {

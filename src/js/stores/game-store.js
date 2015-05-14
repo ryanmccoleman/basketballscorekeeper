@@ -67,7 +67,7 @@ _postList[0] = {
 	visitorscore: 0,
 	timems: 0,
 	quarter: 1,
-	msg: "This is a test message"
+	msg: "The game has not yet started"
 };
 
 function _addPost(postmsg) {

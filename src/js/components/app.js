@@ -18,11 +18,16 @@ var APP = React.createClass({
       		teams.push(<TeamScorer team={this.state.teams[key]}/>);
     	}
 		return (
-			<div>
-				<h1>Basketball Score App</h1>
-				{teams}
-				<GameTimer gametimems={this.state.timeinmilsecs}/>
-				<QuarterControl quarter={this.state.quarter} />
+			<div className="container-fluid">
+				<div className="row">
+					<GameTimer gametimems={this.state.timeinmilsecs}/>
+				</div>
+				<div className="row">
+					{teams}
+				</div>
+				<div className="row">
+					<QuarterControl quarter={this.state.quarter} />
+				</div>
 				<GameLog postlist={this.state.postlist}/>
 			</div>);
 	}

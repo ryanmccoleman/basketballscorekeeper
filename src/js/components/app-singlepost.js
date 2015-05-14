@@ -7,9 +7,9 @@ var SinglePost = React.createClass({
 	render: function() {
 		var gametime = this.getFormattedTime(this.props.timems);
 		return (
-			<div>
-				<h1>Time: {gametime}; Quarter: {this.props.quarter}; Home: {this.props.home}; Visitor: {this.props.visitor}</h1>
-				<span>{this.props.msg}</span>
+			<div className="well well-lg">
+				<h4>Time: {gametime}; Quarter: {this.props.quarter}; Home: {this.props.home}; Visitor: {this.props.visitor}</h4>
+				<p>{this.props.msg}</p>
 			</div>
 		)
 	}

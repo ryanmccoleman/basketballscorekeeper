@@ -27,9 +27,14 @@ var GameTimer = React.createClass({
 	render: function() {
 		var timedisplay = this.getFormattedTime(this.props.gametimems);
 		return (
-			<div>
-			<span>{timedisplay}</span>
-			<button onClick={this.toggleClockRunner}>Start/Stop</button>
+			<div className="col-md-4 col-md-offset-4">
+				<div className="panel panel-default">
+					<div className="panel-heading">Game Time</div>
+					<div className="panel-body">
+						<span className="main-numbers">{timedisplay}</span><br /><br />
+						<button className="btn btn-primary" onClick={this.toggleClockRunner}>Start/Stop</button>
+					</div>
+				</div>
 			</div>
 		)
 	},

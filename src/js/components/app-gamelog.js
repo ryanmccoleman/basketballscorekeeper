@@ -16,8 +16,14 @@ var GameLog = React.createClass({
     	}
 		return (
 			<div>
-				<span>Game Log</span>
-				<textarea value={this.state.value} onChange={this._onChange} ></textarea><button className="btn" onClick={this.save}>Submit</button>
+				<div className="panel panel-default">
+					<div className="panel-heading">Game Analysis</div>
+					<div className="panel-body">
+						<textarea value={this.state.value} onChange={this._onChange} ></textarea><br /><br /><button className="btn btn-primary" onClick={this.save}>Submit</button>
+					</div>
+				</div>
+				
+				<h2>Live Game Blog</h2>
 				{posts}
 			</div>
 		)
